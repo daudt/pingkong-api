@@ -22,7 +22,7 @@ test:
 
 production:
   <<: *default
-  username: ENV.fetch("PK_USER")
-  password: ENV.fetch("PK_PASS")
-  host: ENV.fetch("PK_DBHOST")
+  username: <%= ENV['PK_USER'] %>
+  password: <%= ENV['PK_PASS'] %>
+  password: <%= ENV['PK_DBHOST'] %>
   database: pingkong
