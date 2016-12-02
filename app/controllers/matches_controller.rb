@@ -16,6 +16,16 @@ class MatchesController < ApplicationController
   # POST /matches
   def create
     @match = Match.new(match_params)
+    player1 = User.find(params[:player1])
+    player2 = User.find(params[:player2])
+    @match.users = [ player1, player2 ]
+    winner = Winner.new
+    if player1.id == params[:winner]
+      winner.user = player1
+    else
+      winner.user = player2
+    end
+    @match.winner = winner
 
     if @match.save
       render json: @match, status: :created, location: @match

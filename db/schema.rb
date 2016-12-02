@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 20161201235607) do
   create_table "matches_users", force: :cascade do |t|
     t.integer "user_id"
     t.integer "match_id"
-    t.boolean "winner"
     t.index ["match_id"], name: "index_matches_users_on_match_id", using: :btree
     t.index ["user_id"], name: "index_matches_users_on_user_id", using: :btree
   end
@@ -62,6 +61,13 @@ ActiveRecord::Schema.define(version: 20161201235607) do
     t.index ["email"], name: "index_users_on_email", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
+  end
+
+  create_table "winners", force: :cascade do |t|
+    t.integer "match_id"
+    t.integer "user_id"
+    t.index ["match_id"], name: "index_winners_on_match_id", using: :btree
+    t.index ["user_id"], name: "index_winners_on_user_id", using: :btree
   end
 
 end
