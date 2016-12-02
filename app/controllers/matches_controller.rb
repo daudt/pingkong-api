@@ -4,7 +4,6 @@ class MatchesController < ApplicationController
   # GET /matches
   def index
     @matches = Match.all
-
     render json: @matches
   end
 
@@ -20,7 +19,7 @@ class MatchesController < ApplicationController
     player2 = User.find(params[:player2])
     @match.users = [ player1, player2 ]
     winner = Winner.new
-    if player1.id == params[:winner]
+    if player1.id == params[:winner].to_i
       winner.user = player1
     else
       winner.user = player2
