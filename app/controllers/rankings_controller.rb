@@ -3,7 +3,8 @@ class RankingsController < ApplicationController
 
   # GET /rankings
   def index
-    @rankings = Ranking.all
+    update_rankings
+    @rankings = Ranking.all.order(:rating => :desc)
 
     render json: @rankings
   end

@@ -26,6 +26,7 @@ class MatchesController < ApplicationController
     end
     @match.winner = winner
     update_elo(player1, player2, winner)
+    update_rankings(player1, player2)
 
     if @match.save
       render json: @match, status: :created, location: @match
@@ -73,6 +74,11 @@ class MatchesController < ApplicationController
       player2.rating = player2_elo.rating
       player1.save!
       player2.save!
-
     end
+
+  def update_rankings(player1, player2)
+    player1.rankings << Ranking.create!(rating: player1.rating)
+    player2.rankings << Ranking.create!(rating: player2.rating)
+  end
+
 end
