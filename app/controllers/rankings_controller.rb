@@ -3,15 +3,15 @@ class RankingsController < ApplicationController
 
   # GET /rankings
   def index
-    update_rankings
     @rankings = Ranking.all.order(:rating => :desc)
-
     render json: @rankings
   end
 
   # GET /rankings/1
   def show
-    render json: @ranking
+    user = User.find(params[:id])
+    rankings = user.rankings
+    render json: rankings
   end
 
   # POST /rankings
