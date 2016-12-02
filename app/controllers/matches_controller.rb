@@ -25,6 +25,7 @@ class MatchesController < ApplicationController
       winner.user = player2
     end
     @match.winner = winner
+    update_elo(player1, player2, winner)
 
     if @match.save
       render json: @match, status: :created, location: @match
@@ -56,5 +57,22 @@ class MatchesController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def match_params
       params.fetch(:match, {})
+    end
+
+    def update_elo(player1, player2, winner)
+      player1_elo = Elo::Player.new(rating: player1.rating)
+      player2_elo = Elo::Player.new(rating: player2.rating)
+
+      if winner == player1
+        player1_elo.wins_from(player2_elo)
+      else
+        player2_elo.wins_from(player1_elo)
+      end
+
+      player1.rating = player1_elo.rating
+      player2.rating = player2_elo.rating
+      player1.save!
+      player2.save!
+
     end
 end
