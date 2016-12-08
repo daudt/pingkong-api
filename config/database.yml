@@ -22,7 +22,6 @@ test:
 
 production:
   <<: *default
-  username: <%= ENV['PK_USER'] %>
-  password: <%= ENV['PK_PASS'] %>
-  password: <%= ENV['PK_DBHOST'] %>
+  username: rails
+  password: <%= ENV['APP_DATABASE_PASSWORD'] %>
   database: pingkong
