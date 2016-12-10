@@ -1,0 +1,245 @@
+FORMAT: 1A
+HOST: http://api.pingkong.com/
+
+# PingKong
+
+PingKong is a Rest API allowing consumers to view ELO rankinks and enter matches.
+## New Users [/auth]
+### Register a New User By Email [POST]
+
++ Request (application/json)
+
+        {
+            "email": "scuba@daudt.com",
+            "password": "aaa12345",
+            "password_confirmation": "aaa12345",
+            "name": "Rafael",
+            "nickname": "Tuca"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            X-Frame-Options: SAMEORIGIN
+            X-XSS-Protection: 1; mode=block
+            X-Content-Type-Options: nosniff
+            access-token: 3oBgBaQyFBZoEUzuFJFepQ
+            token-type: Bearer
+            client: LrUSm33Mr7R5sYIE-rWBCA
+            expiry: 1481600569
+            uid: bla@daudt.com
+            Vary: Origin
+            ETag: W/"f93280d36191948433d6049c75459bd3"
+            Cache-Control: max-age=0, private, must-revalidate
+            X-Request-Id: 827b5ee0-79e1-44ab-abb9-3fc702e2f6d7
+            X-Runtime: 0.169370
+            Connection: close
+            Transfer-Encoding: chunked
+
+    + Body
+
+            {
+                "status": "success",
+                "data": {
+                    "id": 23,
+                    "name": "Rafael",
+                    "email": "scuba@daudt.com",
+                    "created_at": "2016-11-29T03:42:49.549Z",
+                    "updated_at": "2016-11-29T03:42:49.627Z",
+                    "nickname": "Tuca",
+                    "provider": "email",
+                    "uid": "scuba@daudt.com",
+                    "image": null
+                }
+            }
+
+## Users Collection [/users]
+
+### List All Users [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "id":   1,
+                "name": "Rafael",
+                "email": "daudt@daudt.com",
+                "nickname": "Tuca",
+                "image": "http://graph.facebook.com/10154062228763290/picture"
+            },
+            {
+                "id":   2,
+                "name": "Scott",
+                "email": "sbalay@gmail.com",
+                "nickname": "ZenBlender",
+                "image": "http://graph.facebook.com/10154062228763290/picture"
+            }
+        ]
+            
+## User [/users/{user_id}]
+
+### View user detail [GET] 
+
++ Response 200 (application/json)
+
+        {
+            "id":   1,
+            "name": "Rafael",
+            "email": "daudt@daudt.com",
+            "nickname": "Tuca",
+            "image": "http://graph.facebook.com/10154062228763290/picture"
+        }
+
+## Rankings [/rankings]
+
+### Get Rankings [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "user_id":   1,
+                "name": "Rafael",
+                "email": "daudt@daudt.com",
+                "nickname": "Tuca",
+                "image": "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/1688401_10152134446803290_487310119_n.jpg?oh=8a96a490ca9e4221cbf190e4aecb23b1&oe=58C1426C",
+                "rating": 1800,
+                "created_at": "2016-05-07T16:43:08.287Z"
+            },
+            {
+                "user_id":   2,
+                "name": "Scott",
+                "email": "sbalay@gmail.com",
+                "nickname": "ZenBlender",
+                "image": "https://avatars2.githubusercontent.com/u/1471363?v=3&s=460",
+                "rating": 2800,
+                "created_at": "2016-05-07T16:43:08.287Z"
+            },
+            {
+                "user_id":   3,
+                "name": "Alex",
+                "email": "akessock@gmail.com",
+                "nickname": "Keysox",
+                "image": "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/557930_557548097589943_1576463450_n.jpg?oh=9513622365667f2f9d25cbe1b8085389&oe=58C08B73",
+                "rating": 4000,
+                "created_at": "2016-05-07T16:43:08.287Z"
+            }
+        ]
+        
+## Rankings by user [/rankings/{user_id}]
+
+### Get Rankings [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "name": "Rafael",
+                "email": "daudt@daudt.com",
+                "nickname": "Tuca",
+                "image": "http://graph.facebook.com/10154062228763290/picture",
+                "rating": 1800,
+                "created_at": "2016-05-07T16:43:08.287Z"
+            },
+            {
+                "name": "Rafael",
+                "email": "daudt@daudt.com",
+                "nickname": "Tuca",
+                "rating": 2800,
+                "created_at": "2016-05-06T16:43:08.287Z"
+            },
+            {
+                "name": "Rafael",
+                "email": "daudt@daudt.com",
+                "nickname": "Tuca",
+                "rating": 2500,
+                "created_at": "2016-05-06T16:43:08.287Z"
+            }
+        ]
+
+
+## Matches Collection [/matches]
+
+### Get Matches [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "match_id": 1,
+                "player1": "sbalay@gmail.com",
+                "player2": "daudt@daudt.com",
+                "winner": "player1",
+                "created_at": "2016-05-07T16:43:08.287Z",
+                "updated_at": "2016-05-07T16:43:08.287Z"
+            },
+            {
+                "match_id": 2,
+                "player1": "bob@gmail.com",
+                "player2": "daudt@daudt.com",
+                "winner": "player2",
+                "created_at": "2016-06-07T16:43:08.287Z",
+                "updated_at": "2016-06-07T16:43:08.287Z"
+            }
+        ]
+        
+### Create Match [POST]
+
++ Request (application/json)
+
+        {
+            "player1": "sbalay@gmail.com",
+            "player2": "daudt@daudt.com"
+        }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "match_id": 5,
+                "player1": "sbalay@gmail.com",
+                "player2": "daudt@daudt.com"
+                "winner": "sbalay@gmail.com",
+                "created_at": "2016-06-07T16:43:08.287Z",
+                "updated_at": "2016-06-07T16:43:08.287Z"
+            }
+
+        
+## Match [/matches/{match_id}]
+
+### View Match Detail [GET]
+
++ Response 200 (application/json)
+        
+        {
+            "match_id": 1,
+            "player1": "sbalay@gmail.com",
+            "player2": "daudt@daudt.com",
+            "winner": "sbalay@gmail.com",
+            "created_at": "2016-05-07T16:43:08.287Z",
+            "updated_at": "2016-05-07T16:43:08.287Z"
+        }
+
+### Update Match Detail [PUT]
+
++ Request (application/json)
+
+        {
+            "player1": "sbalay@gmail.com",
+            "player2": "daudt@daudt.com"
+        }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "match_id": 5,
+                "player1": "sbalay@gmail.com",
+                "player2": "daudt@daudt.com"
+                "winner": "sbalay@gmail.com",
+                "created_at": "2016-06-07T16:43:08.287Z",
+                "updated_at": "2016-06-07T17:00:08.287Z"
+            }
