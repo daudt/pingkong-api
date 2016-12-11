@@ -1,5 +1,5 @@
 class RankingsController < ApplicationController
-  before_action :set_ranking, only: [:show, :update, :destroy]
+  before_action :set_ranking, only: [:update, :destroy]
 
   # GET /rankings
   def index
