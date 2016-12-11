@@ -6,15 +6,15 @@ class MatchSerializer < ActiveModel::Serializer
   end
 
   def player1
-    object.users.first
+    object.users.first.id
   end
 
   def player2
-    object.users.last
+    object.users.second.id
   end
 
   def winner
-    object.winner.user
+    object.winner.user_id
   end
 
 end
