@@ -168,17 +168,17 @@ PingKong is a Rest API allowing consumers to view ELO rankinks and enter matches
         [
             {
                 "match_id": 1,
-                "player1": "sbalay@gmail.com",
-                "player2": "daudt@daudt.com",
-                "winner": "player1",
+                "player1": 13,
+                "player2": 14,
+                "winner": 13,
                 "created_at": "2016-05-07T16:43:08.287Z",
-                "updated_at": "2016-05-07T16:43:08.287Z"
+                "updated_at": "2016-06-07T16:43:08.287Z"
             },
             {
                 "match_id": 2,
-                "player1": "bob@gmail.com",
-                "player2": "daudt@daudt.com",
-                "winner": "player2",
+                "player1": 12,
+                "player2": 10,
+                "winner": 10,
                 "created_at": "2016-06-07T16:43:08.287Z",
                 "updated_at": "2016-06-07T16:43:08.287Z"
             }
@@ -189,8 +189,9 @@ PingKong is a Rest API allowing consumers to view ELO rankinks and enter matches
 + Request (application/json)
 
         {
-            "player1": "sbalay@gmail.com",
-            "player2": "daudt@daudt.com"
+            "player1": 12,
+            "player2": 13,
+            "winner": 12
         }
 
 + Response 201 (application/json)
@@ -199,9 +200,9 @@ PingKong is a Rest API allowing consumers to view ELO rankinks and enter matches
 
             {
                 "match_id": 5,
-                "player1": "sbalay@gmail.com",
-                "player2": "daudt@daudt.com"
-                "winner": "sbalay@gmail.com",
+                "player1": 12,
+                "player2": 13
+                "winner": 12,
                 "created_at": "2016-06-07T16:43:08.287Z",
                 "updated_at": "2016-06-07T16:43:08.287Z"
             }
@@ -215,9 +216,9 @@ PingKong is a Rest API allowing consumers to view ELO rankinks and enter matches
         
         {
             "match_id": 1,
-            "player1": "sbalay@gmail.com",
-            "player2": "daudt@daudt.com",
-            "winner": "sbalay@gmail.com",
+            "player1": 12,
+            "player2": 11,
+            "winner": 12,
             "created_at": "2016-05-07T16:43:08.287Z",
             "updated_at": "2016-05-07T16:43:08.287Z"
         }
@@ -227,8 +228,9 @@ PingKong is a Rest API allowing consumers to view ELO rankinks and enter matches
 + Request (application/json)
 
         {
-            "player1": "sbalay@gmail.com",
-            "player2": "daudt@daudt.com"
+            "player1": 12,
+            "player2": 13,
+            "winner": 12
         }
 
 + Response 200 (application/json)
@@ -237,9 +239,9 @@ PingKong is a Rest API allowing consumers to view ELO rankinks and enter matches
 
             {
                 "match_id": 5,
-                "player1": "sbalay@gmail.com",
-                "player2": "daudt@daudt.com"
-                "winner": "sbalay@gmail.com",
+                "player1": 12,
+                "player2": 13
+                "winner": 12updated ,
                 "created_at": "2016-06-07T16:43:08.287Z",
                 "updated_at": "2016-06-07T17:00:08.287Z"
             }
