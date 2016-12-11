@@ -5,7 +5,7 @@ HOST: http://api.pingkong.com/
 
 PingKong is a Rest API allowing consumers to view ELO rankinks and enter matches.
 ## New Users [/auth]
-### Register a New User By Email [POST]
+### Register a new user by e-oauth mail [POST]
 
 + Request (application/json)
 
@@ -53,10 +53,43 @@ PingKong is a Rest API allowing consumers to view ELO rankinks and enter matches
                     "image": null
                 }
             }
+            
+### Register new user using Facebook [GET/auth/facebook?auth_origin_url=http://www.somewhere.com]
+
++ Request (application/json)
+
++ Response 200 (application/json)
+
+    + Headers
+
+            X-Frame-Options: SAMEORIGIN
+            X-XSS-Protection: 1; mode=block
+            X-Content-Type-Options: nosniff
+            access-token: 3oBgBaQyFBZoEUzuFJFepQ
+            token-type: Bearer
+            client: LrUSm33Mr7R5sYIE-rWBCA
+            expiry: 1481600569
+            uid: bla@daudt.com
+            Vary: Origin
+            ETag: W/"f93280d36191948433d6049c75459bd3"
+            Cache-Control: max-age=0, private, must-revalidate
+            X-Request-Id: 827b5ee0-79e1-44ab-abb9-3fc702e2f6d7
+            X-Runtime: 0.169370
+            Connection: close
+            Transfer-Encoding: chunked
 
 ## Users Collection [/users]
 
 ### List All Users [GET]
+
++ Request (application/json)
+
+    + Headers
+
+            token-type: Bearer
+            client: 7ygqAnhfnl2YVAuNkIFZPA
+            uid: 10154729433053290
+            access-token: wZKFLPQkHT5PHNEI-mwMtg
 
 + Response 200 (application/json)
 
@@ -81,6 +114,15 @@ PingKong is a Rest API allowing consumers to view ELO rankinks and enter matches
 
 ### View user detail [GET] 
 
++ Request (application/json)
+
+    + Headers
+
+            token-type: Bearer
+            client: 7ygqAnhfnl2YVAuNkIFZPA
+            uid: 10154729433053290
+            access-token: wZKFLPQkHT5PHNEI-mwMtg
+
 + Response 200 (application/json)
 
         {
@@ -94,6 +136,8 @@ PingKong is a Rest API allowing consumers to view ELO rankinks and enter matches
 ## Rankings [/rankings]
 
 ### Get Rankings [GET]
+
++ Request (application/json)
 
 + Response 200 (application/json)
 
@@ -131,6 +175,8 @@ PingKong is a Rest API allowing consumers to view ELO rankinks and enter matches
 
 ### Get Rankings [GET]
 
++ Request (application/json)
+
 + Response 200 (application/json)
 
         [
@@ -163,6 +209,15 @@ PingKong is a Rest API allowing consumers to view ELO rankinks and enter matches
 
 ### Get Matches [GET]
 
++ Request (application/json)
+
+    + Headers
+
+            token-type: Bearer
+            client: 7ygqAnhfnl2YVAuNkIFZPA
+            uid: 10154729433053290
+            access-token: wZKFLPQkHT5PHNEI-mwMtg
+
 + Response 200 (application/json)
 
         [
@@ -188,11 +243,20 @@ PingKong is a Rest API allowing consumers to view ELO rankinks and enter matches
 
 + Request (application/json)
 
-        {
-            "player1": 12,
-            "player2": 13,
-            "winner": 12
-        }
+    + Headers
+
+            token-type: Bearer
+            client: 7ygqAnhfnl2YVAuNkIFZPA
+            uid: 10154729433053290
+            access-token: wZKFLPQkHT5PHNEI-mwMtg
+
+    + Body
+
+            {
+                "player1": 12,
+                "player2": 13,
+                "winner": 12
+            }
 
 + Response 201 (application/json)
 
@@ -212,6 +276,15 @@ PingKong is a Rest API allowing consumers to view ELO rankinks and enter matches
 
 ### View Match Detail [GET]
 
++ Request (application/json)
+
+    + Headers
+
+            token-type: Bearer
+            client: 7ygqAnhfnl2YVAuNkIFZPA
+            uid: 10154729433053290
+            access-token: wZKFLPQkHT5PHNEI-mwMtg
+
 + Response 200 (application/json)
         
         {
@@ -227,11 +300,20 @@ PingKong is a Rest API allowing consumers to view ELO rankinks and enter matches
 
 + Request (application/json)
 
-        {
-            "player1": 12,
-            "player2": 13,
-            "winner": 12
-        }
+    + Headers
+
+            token-type: Bearer
+            client: 7ygqAnhfnl2YVAuNkIFZPA
+            uid: 10154729433053290
+            access-token: wZKFLPQkHT5PHNEI-mwMtg
+
+    + Body
+
+            {
+                "player1": 12,
+                "player2": 13,
+                "winner": 12
+            }
 
 + Response 200 (application/json)
 
