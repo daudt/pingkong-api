@@ -57,6 +57,9 @@ GEM
       devise (> 3.5.2, <= 4.2)
       rails (< 6)
     diff-lcs (1.2.5)
+    drg (1.4.0)
+      bundler (~> 1.10)
+      highline (~> 1.6)
     elo (0.1.0)
     erubis (2.7.0)
     factory_girl (4.7.0)
@@ -72,6 +75,7 @@ GEM
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     hashie (3.4.6)
+    highline (1.7.8)
     i18n (0.7.0)
     json (1.8.3)
     jsonapi (0.1.1.beta2)
@@ -200,24 +204,25 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_model_serializers
-  byebug
-  devise_token_auth
-  elo
-  factory_girl_rails
-  faker
-  listen (~> 3.0.5)
-  omniauth-facebook
-  omniauth-google-oauth2
-  pg
-  rack-cors
-  rails (= 5.0.0.1)
-  rspec-rails
-  shoulda-matchers
-  spring
-  spring-watcher-listen (~> 2.0.0)
+  active_model_serializers (~> 0.10)
+  byebug (~> 9.0)
+  devise_token_auth (~> 0.1)
+  drg (~> 1.4)
+  elo (~> 0.1)
+  factory_girl_rails (~> 4.7)
+  faker (~> 1.6)
+  listen (~> 3.0)
+  omniauth-facebook (~> 4.0)
+  omniauth-google-oauth2 (~> 0.4)
+  pg (~> 0.19)
+  rack-cors (~> 0.4)
+  rails (~> 5.0)
+  rspec-rails (~> 3.5)
+  shoulda-matchers (~> 3.1)
+  spring (~> 2.0)
+  spring-watcher-listen (~> 2.0)
   tzinfo-data
-  unicorn
+  unicorn (~> 5.2)
 
 RUBY VERSION
    ruby 2.3.3p222

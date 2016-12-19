@@ -1,7 +1,7 @@
 module Api
   class MatchesController < ApplicationController
     before_action :set_match, only: [:show, :update, :destroy]
-    before_action :authenticate_user!
+    before_action :authenticate_api_user!
 
     # GET /matches
     def index
