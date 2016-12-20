@@ -211,7 +211,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.10)
-  activerecord-session_store
+  activerecord-session_store (~> 1.0)
   byebug (~> 9.0)
   devise_token_auth (~> 0.1)
   drg (~> 1.4)
