@@ -31,7 +31,7 @@ module Api
       update_rankings(player1, player2)
 
       if @match.save
-        render json: @match, status: :created, location: @match
+        render json: @match, status: :created, location: api_match_url(@match)
       else
         render json: @match.errors, status: :unprocessable_entity
       end

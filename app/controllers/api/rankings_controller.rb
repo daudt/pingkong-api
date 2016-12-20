@@ -20,7 +20,7 @@ module Api
       @ranking = Ranking.new(ranking_params)
 
       if @ranking.save
-        render json: @ranking, status: :created, location: @ranking
+        render json: @ranking, status: :created, location: api_ranking_url(@ranking)
       else
         render json: @ranking.errors, status: :unprocessable_entity
       end
