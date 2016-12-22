@@ -4,7 +4,7 @@ module Api
 
     # GET /rankings
     def index
-      @rankings = Ranking.all.order(:rating => :desc)
+      @rankings = User.all.order(:rating => :desc)
       render json: @rankings
     end
 
