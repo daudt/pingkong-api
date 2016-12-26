@@ -27,7 +27,7 @@ module Api
         winner.user = player2
       end
       @match.winner = winner
-      update_elo(player1, player2, winner)
+      update_elo(player1, player2, winner.user)
       update_rankings(player1, player2)
 
       if @match.save
