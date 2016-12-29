@@ -2,6 +2,7 @@ module Api
   class MatchesController < ApplicationController
     before_action :set_match, only: [:show, :update, :destroy]
     before_action :authenticate_api_user!
+    before_action :validate_user, only: [:update, :destroy, :create]
 
     # GET /matches
     def index
@@ -81,6 +82,11 @@ module Api
     def update_rankings(player1, player2)
       player1.rankings << Ranking.create!(rating: player1.rating)
       player2.rankings << Ranking.create!(rating: player2.rating)
+    end
+
+    def validate_user
+      render json: {message: 'Son, you got a panty on your head!'},
+             status: :unauthorized unless [params[:player1], params[:player2]].include?(current_api_user.id)
     end
 
   end
