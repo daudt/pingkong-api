@@ -85,8 +85,9 @@ module Api
     end
 
     def validate_user
-      render json: {message: 'Son, you got a panty on your head!'},
-             status: :unauthorized unless [params[:player1], params[:player2]].include?(current_api_user.id)
+      if [params[:player1], params[:player2]].include?(current_api_user.id) || current_api_user.admin?
+        render json: {message: 'Son, you got a panty on your head!'}, status: :unauthorized
+      end
     end
 
   end
