@@ -86,6 +86,8 @@ module Api
 
     def validate_user
       if [params[:player1], params[:player2]].include?(current_api_user.id) || current_api_user.admin?
+        #noop
+      else
         render json: {message: 'Son, you got a panty on your head!'}, status: :unauthorized
       end
     end
