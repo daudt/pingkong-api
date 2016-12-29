@@ -28,10 +28,10 @@ module Api
         winner.user = player2
       end
       @match.winner = winner
-      update_elo(player1, player2, winner.user)
-      update_rankings(player1, player2)
 
       if @match.save
+        update_elo
+        update_rankings(player1, player2)
         render json: @match, status: :created, location: api_match_url(@match)
       else
         render json: @match.errors, status: :unprocessable_entity
@@ -63,20 +63,39 @@ module Api
       params.fetch(:match, {})
     end
 
-    def update_elo(player1, player2, winner)
-      player1_elo = Elo::Player.new(rating: player1.rating)
-      player2_elo = Elo::Player.new(rating: player2.rating)
-
-      if winner == player1
-        player1_elo.wins_from(player2_elo)
-      else
-        player2_elo.wins_from(player1_elo)
+    def update_elo
+      User.all.each do |user|
+        user.rating = 1000
+        user.save!
       end
 
-      player1.rating = player1_elo.rating
-      player2.rating = player2_elo.rating
-      player1.save!
-      player2.save!
+      elo_players = Hash.new
+      Match.all.each do |match|
+        winner = match.winner.user
+        loser = match.winner.user == match.users.first ? match.users.second : match.users.first
+        if elo_players[winner.id].nil?
+          winner_elo_player = Elo::Player.new(rating: 1000)
+          elo_players[winner.id] = winner_elo_player
+        else
+          winner_elo_player = elo_players[winner.id]
+        end
+
+        if elo_players[loser.id].nil?
+          loser_elo_player = Elo::Player.new(rating: 1000)
+          elo_players[loser.id] = loser_elo_player
+        else
+          loser_elo_player = elo_players[loser.id]
+        end
+
+        winner_elo_player.wins_from(loser_elo_player)
+      end
+
+      elo_players.each do |user_id, elo_player|
+        user = User.find(user_id)
+        user.rating = elo_player.rating
+        user.save!
+      end
+
     end
 
     def update_rankings(player1, player2)
