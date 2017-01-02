@@ -11,8 +11,12 @@ module Api
     # GET /rankings/1
     def show
       user = User.find(params[:id])
-      rankings = user.rankings
-      render json: rankings
+      if user
+        rankings = user.rankings
+        render json: rankings
+      else
+        render json: {message: 'User not found'}, status: :not_found
+      end
     end
 
     # POST /rankings

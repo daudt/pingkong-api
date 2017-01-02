@@ -2,7 +2,8 @@ module Api
   class MatchesController < ApplicationController
     before_action :set_match, only: [:show, :update, :destroy]
     before_action :authenticate_api_user!, only: [:create, :update, :destroy]
-    before_action :validate_user, only: [:update, :destroy, :create]
+    before_action :validate_current_user_in_match, only: [:update, :destroy, :create]
+    before_action :validate_user_is_approved, only: [:update, :destroy, :create]
 
     # GET /matches
     def index
@@ -103,11 +104,19 @@ module Api
       player2.rankings << Ranking.create!(rating: player2.rating)
     end
 
-    def validate_user
+    def validate_current_user_in_match
       if [params[:player1], params[:player2]].include?(current_api_user.id) || current_api_user.admin?
         #noop
       else
         render json: {message: 'Son, you got a panty on your head!'}, status: :unauthorized
+      end
+    end
+
+    def validate_user_is_approved
+      if current_api_user.approved?
+        #noop
+      else
+        render json: {message: 'Your account has not been approved yet'} , status: :unauthorized
       end
     end
 
