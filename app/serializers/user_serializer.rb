@@ -6,7 +6,7 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def num_wins
-    Winner.where(user_id: object.id).count
+    object.winners.count
   end
 
   def num_losses
