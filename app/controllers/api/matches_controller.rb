@@ -4,10 +4,6 @@ module Api
     before_action :authenticate_api_user!, only: [:create, :update, :destroy]
     before_action :validate_user, only: [:update, :destroy, :create]
 
-    def test
-      "test"
-    end
-
     # GET /matches
     def index
       @matches = Match.all
