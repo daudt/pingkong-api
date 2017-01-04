@@ -31,26 +31,34 @@ module Api
       @match.winner = winner
 
       if @match.save
-        update_elo
-        update_rankings(player1, player2)
+        if current_api_user == player1
+          recipient = player2
+          sender = player1
+        else
+          recipient = player1
+          sender = player2
+        end
+        send_match_approval_email(@match, recipient, sender, winner.user)
         render json: @match, status: :created, location: api_match_url(@match)
       else
         render json: @match.errors, status: :unprocessable_entity
       end
     end
 
-    # PATCH/PUT /matches/1
-    def update
-      if @match.update(match_params)
-        render json: @match
+    def approve
+      @match = Match.find_by_uuid(params[:uuid])
+      if @match
+        @match.confirmed = true
+        if @match.save
+          update_elo
+          update_rankings(@match.users.first, @match.users.second)
+          render json: {message: 'Your match has been approved, Son!'}, status: :ok
+        else
+          render json: @match.errors, status: :unprocessable_entity
+        end
       else
-        render json: @match.errors, status: :unprocessable_entity
+        render json: {message: 'We ain\'t got that match'}, status: :not_found
       end
-    end
-
-    # DELETE /matches/1
-    def destroy
-      @match.destroy
     end
 
     private
@@ -118,6 +126,10 @@ module Api
       else
         render json: {message: 'Your account has not been approved yet'} , status: :unauthorized
       end
+    end
+
+    def send_match_approval_email(match, recipient, sender, winner)
+      MatchApprovalMailer.match_approval_email(match, recipient, sender, winner).deliver
     end
 
   end
