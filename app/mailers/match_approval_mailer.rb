@@ -4,7 +4,7 @@ class MatchApprovalMailer < ApplicationMailer
     @recipient = recipient
     @match = match
     @sender = sender
-    @verb = sender == winner ? 'crushed you epically' : 'laid the smack down on you'
+    @verb = sender == winner ? 'crushed you epically' : 'was destroyed by you'
     @url = "#{api_matches_url}/#{@match.uuid}/approve"
     mail(to: @recipient.email, subject: 'Please confirm your match')
   end
