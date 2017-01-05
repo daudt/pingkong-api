@@ -26,15 +26,25 @@ class User < ApplicationRecord
   end
 
   def num_matches
-    matches.count
+    matches.where(confirmed: true).count
   end
 
   def num_wins
-    winners.count
+    count = 0
+    matches.where(confirmed: true).each do |m|
+      if m.winner.user == self
+        count+=1
+      end
+    end
+    count
   end
 
   def num_losses
     num_matches - num_wins
+  end
+
+  def num_pending
+    matches.count - num_matches
   end
 
 end
