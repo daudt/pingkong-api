@@ -8,4 +8,12 @@ class Match < ApplicationRecord
     self.uuid = SecureRandom.uuid
   end
 
+  def winning_user
+    self.winner.user
+  end
+
+  def losing_user
+    self.winner.user_id == self.users.first.id ? self.users.second : self.users.first
+  end
+
 end

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   namespace :api do
+    resources :history, only: [:index]
     resources :matches, except: [:destroy, :update]
     resources :rankings, except: [:destroy, :create, :update]
     mount_devise_token_auth_for 'User', at: 'auth'

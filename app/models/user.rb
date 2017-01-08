@@ -47,4 +47,8 @@ class User < ApplicationRecord
     matches.count - num_matches
   end
 
+  def preferred_name
+    !self.nickname.blank? ? self.nickname : self.name
+  end
+
 end
