@@ -1,0 +1,13 @@
+.env
+venv/
+__pycache__/
+*.pyc
+instance/
+.pytest_cache/
+.mypy_cache/
+.tox/
+pip-wheel-metadata/
+build/
+dist/
+*.egg-info/
+.DS_Store
