@@ -21,3 +21,4 @@
 
 # OS X folder info
 .DS_STORE
+*.env
