@@ -1,0 +1,15 @@
+version: '2'
+services:
+  db:
+    image: postgres
+  api:
+    build: .
+    command: bundle exec puma -C config/puma.rb
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/kingofpong-api
+    depends_on:
+      - db
+    env_file:
+      - .kingofpong-dev.env
