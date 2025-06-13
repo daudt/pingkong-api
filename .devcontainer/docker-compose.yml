@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    volumes:
+      - ..:/usr/src/app:cached # Mount the project directory
+    ports:
+      - "3000:3000" # Forward Rails port
+    depends_on:
+      - db
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=password
+      - RAILS_ENV=development
+    # Keep the container running
+    command: sleep infinity
+
+
+  db:
+    image: postgres:15-alpine # Using a recent stable version
+    volumes:
+      - pgdata:/var/lib/postgresql/data # Persist data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=pingkong_dev
+    ports:
+      - "5432:5432" # Optionally forward PostgreSQL port for host access
+
+volumes:
+  pgdata:
