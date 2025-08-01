@@ -1,10 +1,8 @@
-FactoryGirl.define do
-
-  factory(:user) do |u|
-    u.name { Faker::Name.name }
-    u.email { Faker::Internet.email }
-    u.password { Faker::Internet.password(8) }
-    u.nickname { Faker::Name.name }
+FactoryBot.define do
+  factory :user do
+    name { Faker::Name.name }
+    email { Faker::Internet.email }
+    password { Faker::Internet.password(min_length: 8) }
+    nickname { Faker::Name.name }
   end
-
 end

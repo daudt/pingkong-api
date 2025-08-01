@@ -1,0 +1,19 @@
+current directory: /workspace/vendor/bundle/ruby/3.3.0/gems/erb-5.0.2/ext/erb/escape
+/usr/bin/ruby3.3 -I/usr/lib/ruby/vendor_ruby extconf.rb
+checking for rb_ext_ractor_safe() in ruby.h... yes
+creating Makefile
+
+current directory: /workspace/vendor/bundle/ruby/3.3.0/gems/erb-5.0.2/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20250801-2405-lolvix sitelibdir\=./.gem.20250801-2405-lolvix clean
+
+current directory: /workspace/vendor/bundle/ruby/3.3.0/gems/erb-5.0.2/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20250801-2405-lolvix sitelibdir\=./.gem.20250801-2405-lolvix
+compiling escape.c
+linking shared-object erb/escape.so
+
+current directory: /workspace/vendor/bundle/ruby/3.3.0/gems/erb-5.0.2/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20250801-2405-lolvix sitelibdir\=./.gem.20250801-2405-lolvix install
+/usr/bin/install -c -m 0755 escape.so ./.gem.20250801-2405-lolvix/erb
+
+current directory: /workspace/vendor/bundle/ruby/3.3.0/gems/erb-5.0.2/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20250801-2405-lolvix sitelibdir\=./.gem.20250801-2405-lolvix clean

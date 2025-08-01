@@ -3,8 +3,8 @@ require 'rails_helper'
 describe User do
 
   before(:all) do
-    @attributes = FactoryGirl.attributes_for(:user)
-    @user = FactoryGirl.create(:user)
+    @attributes = FactoryBot.attributes_for(:user)
+    @user = FactoryBot.create(:user)
   end
 
   it 'should have mnay rankings' do
@@ -68,7 +68,7 @@ describe User do
   end
 
   it 'should default preferred name to full name if the nickname is missing' do
-    user = FactoryGirl.build(:user)
+    user = FactoryBot.build(:user)
     user.nickname = nil
     expect(user.preferred_name).to equal(user.name)
   end
