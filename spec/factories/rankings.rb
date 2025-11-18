@@ -1,5 +1,5 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :ranking do
-    rating 1
+    rating { 1 }
   end
 end

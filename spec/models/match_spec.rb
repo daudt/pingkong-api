@@ -3,9 +3,9 @@ require 'rails_helper'
 describe Match do
 
   before(:all) do
-    @match = FactoryGirl.create(:match)
-    @user1 = FactoryGirl.create(:user)
-    @user2 = FactoryGirl.create(:user)
+    @match = FactoryBot.create(:match)
+    @user1 = FactoryBot.create(:user)
+    @user2 = FactoryBot.create(:user)
     @match.users = [ @user1, @user2 ]
     @match.winner = Winner.new({user: @user2})
   end

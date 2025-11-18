@@ -1,5 +1,5 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :match_user do
-    winner false
+    winner { false }
   end
 end
